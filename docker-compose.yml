@@ -1,0 +1,26 @@
+version: '3'
+services:
+  jupyterlab-mmsl:
+    build:
+      context: .
+      dockerfile: "Dockerfile"
+    user: root
+    volumes:
+      - ./workspace:/root/workspace
+    ports:
+      - "8888:8888"
+    environment:
+      TZ: Asia/Tokyo
+    command:
+      jupyter lab 
+          --ip=0.0.0.0
+          --allow-root
+          --no-browser
+          --NotebookApp.notebook_dir='/root/workspace'
+          --NotebookApp.token=''
+# volumes:
+#   jupyterlab-dir:
+#     driver_opts:
+#       type: none
+#       device: /Users/MacBookLover/Docker/JupyterLab/codes
+#       o: bind
